@@ -3,25 +3,28 @@ import tkinter as tk
 import pyautogui
 import keyboard
 
-# set attack speed and ping
 attack_speed = 1.07
-ping = 0.22  # in seconds
+ping = 0.22
+x = 583
+y = 1037
+width = 612 -x
+height = 1050 - y
 
-# calculate windup time
+
 windup_time = 0.2 / attack_speed
 
-# calculate attack delay and post attack delay
+
 attack_delay = max(0.05, windup_time - ping)
 post_attack_delay = 0.1 - windup_time
 
-# calculate distance to move between attacks
+
 distance_to_move = 200 * attack_speed
 
-# set key bindings
+
 move_key = 'a'
 attack_key = 'c'
 
-# initialize GUI
+
 root = tk.Tk()
 root.title("Orbwalker")
 root.geometry("200x150")
@@ -66,7 +69,7 @@ stop_button.pack(pady=10)
 
 # create Take Screenshot button
 def take_screenshot():
-    screenshot = pyautogui.screenshot()
+    screenshot = pyautogui.screenshot(region=(x, y, width, height))
     screenshot.save("screenshot.png")
 
 screenshot_button = tk.Button(root, text="Take Screenshot", command=take_screenshot)
